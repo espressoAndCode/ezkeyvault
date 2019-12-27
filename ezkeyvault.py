@@ -8,23 +8,32 @@ def main():
     fn = os.path.join(home, '.keyvault.json')
 
     updated_keyfile = {}
+    dash = '-' * 100
+
+    print('              __ __          _    __            ____')
+    print('  ___  ____  / //_/__  __  _| |  / /___ ___  __/ / /_')
+    print(' / _ \/_  / / ,< / _ \/ / / / | / / __ `/ / / / / __/')
+    print('/  __/ / /_/ /| /  __/ /_/ /| |/ / /_/ / /_/ / / /_  ')
+    print('\___/ /___/_/ |_\___/\__, / |___/\__,_/\__,_/_/\__/ ')
+    print('                    /____/')
 
     # If the 'apivault.txt' file exists, load it
     if (os.path.exists(fn)):
-        print("file exists")
-        #     data = "{}"
         with open(fn, 'r') as f:
             # Guard against empty file
             file = f.read()
             if len(file) > 0:
                 updated_keyfile = json.loads(file)
 
-    # print("updated_keyfile: ", updated_keyfile)
+        print(dash)
+        print("KEYNAME             KEY (first 16 digits)       TIMESTAMP                         DOCS")
+        print(dash)
+        for k, v in updated_keyfile.items():
+            print('{:<20}{:>20}{:>20}{:>40}'.format(k, v['value'][:16], v['date_created'], v['docs_site']))
+        print('\n\n')
 
     running = True
     while running:
-
-
         key = input("Enter the new API key name: ")
         val = input("Enter the new API key value: ")
         site = input("Enter a URL for documentation (optional)")
@@ -59,8 +68,6 @@ def main():
 
         keep_running = input("Would you like to add another key to the vault? (Y/N)")
         running = True if (keep_running == 'Y' or keep_running == 'y') else False
-
-
 
 if __name__== "__main__":
    main()
