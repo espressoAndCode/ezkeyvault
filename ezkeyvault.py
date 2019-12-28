@@ -1,5 +1,4 @@
 import os
-import sys
 import json
 from datetime import datetime
 
@@ -9,6 +8,7 @@ def main():
     home = os.path.expanduser("~") + '/'
     fn = os.path.join(home, '.keyvault.json')
 
+    # Initialize module variables
     updated_keyfile = {}
     dash = '-' * 100
 
@@ -41,6 +41,7 @@ def main():
             print('{:<20}{:>20}{:>20}{:>40}'.format(k, v['value'][:16], v['date_created'], v['comment']))
         print('\n')
 
+    # Begin Main control loop
     running = True
     while running:
         key = input("Enter the new API key name: ")
@@ -49,12 +50,14 @@ def main():
         confirm = input("Add this key to the vault? (Y/N)")
         timestamp = datetime.now().strftime("%H:%M:%S.%f")
 
+        # Assign k/v pairs
         newkey = {
             "value": val,
             "date_created": timestamp,
             "comment": comment
         }
 
+        # Verify if key already exists, does user want to over write?
         if confirm == 'Y' or confirm == 'y':
             if key in updated_keyfile.keys():
                 writeflag = input("Key for "+ key +" already exists. Do you want to replace it? (Y/N)")
@@ -72,8 +75,10 @@ def main():
         else:
             print("New key for " + key + " has been discarded.\n")
 
+        # Add another key?
         keep_running = input("Would you like to add another key to the vault? (Y/N)")
         running = True if (keep_running == 'Y' or keep_running == 'y') else False
+        # End Main control loop
 
 if __name__== "__main__":
    main()
