@@ -23,13 +23,14 @@ $ cd ~
 $ git clone https://github.com/espressoAndCode/ezkeyvault.git
 ```
 
-And repeat
+Add the following line of code to your `.bash_profile` or `.bashrc` file.
 
 ```
-until finished
+alias ezkeyvault="python ${HOME}/ezkeyvault/ezkeyvault.py"
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Now you can run the ezKeyVault from any path in your system by simply typing `ezkeyvault`.
+
 
 ## License
 
