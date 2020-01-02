@@ -28,6 +28,14 @@ Add the following line of code to your `.bash_profile` or `.bashrc` file.
 ```
 alias ezkeyvault="python ${HOME}/ezkeyvault/ezkeyvault.py"
 ```
+Once you've added this alias, either reload your terminal or refresh it by typing:
+
+```
+$ source .bash_profile
+//OR
+$ source .bashrc
+//Depending on which file you modified
+```
 
 Now you can run the ezKeyVault from any path in your system by simply typing `ezkeyvault`. You will be given a series of options as shown here:
 
@@ -81,6 +89,9 @@ Enter the new API key name:
 ```
 Notice that only the first 16 characters of the key are shown. The entire key will be returned to your code when accessed with *ezkey*.
 
+### Miscellaneous
+
+EzKeyVault can be used for more that API keys. You can also reference your database login and passwords or any other information that can be stored as text in a key/value pair. Just remember that the `.keyvault.json` file exists on your user root and it stores all of the data in plaintext, so be careful not to share it!
 
 ## License
 
